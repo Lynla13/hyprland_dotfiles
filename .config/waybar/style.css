@@ -1,0 +1,151 @@
+@import "../../.cache/wal/colors-waybar.css";
+* {
+  /* reference the color by using @color-name */
+  border:none;
+	border-radius: 0;
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+	font-size:     12px;
+	min-height: 0;
+	min-height: 1px;
+  margin-top: 2px;
+}
+
+window#waybar {
+  /* you can also GTK3 CSS functions! */
+  background-color:rgba(0, 0, 0, 0.0);
+  border: none;
+}
+
+#taskbar {
+
+  margin-left:20px;
+  margin-top:2px;
+  opacity :0;
+}
+
+#workspaces{
+  border-radius: 0px;
+	color: @text;
+	margin-right:20px;
+
+  }
+
+#workspaces button {
+  color: @text;
+  margin-right:2px;
+  border: 1px solid @foreground;
+  }
+
+#workspaces button:hover {
+	background-color: @foreground;
+	color: @text;
+}
+#workspaces button.active {
+	background-color: @background;
+	color: @color9;
+}
+
+#mpris {
+	min-width: 10px;
+	background-color: @background;
+	color: @color9;
+	margin-left: 10px;
+	padding-left :10px;
+}
+
+
+#tray,
+#bluetooth,
+#blacklight,
+#custom-weather,
+#custom-clipboard,
+#network,
+#pulseaudio,
+#clock {
+  margin-left:5px;
+  color: @color9;
+  background-color:@background;
+  padding-left:10px;
+  padding-right: 10px;
+  border: 1px solid @foreground;
+  
+}
+
+#custom-left_sidebar,
+#custom-dir,
+#custom-notification,
+#disk,
+#cpu,
+#memory,
+#temperature,
+#tray{
+  margin-right: 5px;
+  margin-left:5px;
+  color:@color9;
+  background-color: @background;
+  padding-right:10px;
+  padding-left:10px;
+  min-width: 20px;
+  border: 1px solid @foreground;
+}
+
+#custom-shutdown {
+  color: @color9;
+  background-color:@background;
+  font-size:12pt;
+  padding-right:10px;
+  padding-left:10px;
+  margin-left:10px;
+  border: 1px solid @foreground;
+  margin-right:5px;
+
+}
+
+#custom-reboot,
+#custom-logout,
+#custom-suspend,
+#custom-hibernate{
+  color: @color9;
+  background-color:@background;
+  font-size:8pt;
+  padding-left:10px;
+  padding-right:10px;
+  padding-top:3px;
+  margin-left:5px;
+}
+
+
+#custom-left_sidebar:hover,
+#custom-notification:hover {
+  background-color:@foreground;
+
+}
+
+#custom-shutdown:hover,
+#custom-reboot:hover,
+#custom-logout:hover,
+#custom-suspend:hover,
+#custom-hibernate:hover{
+  color: @color10;
+  background-color:@color3;
+}
+#pulseaudio:hover,
+#mpris:hover {
+   background-color: @foreground;
+}
+
+
+#memory{
+  padding-top : 2px
+}
+#clock {
+  padding-top: 3px
+}
+
+#custom-left_sidebar {
+  margin-left: 10px;
+}
+
+#custom-shutdown {
+  margin-right: 10px;
+}

@@ -1,0 +1,5 @@
+;; left Sibebar
+(include "./widgets/left_sibebar.yuck")
+(include "./widgets/search_bar.yuck")
+
+

@@ -1,0 +1,326 @@
+{
+  "layer": "top",
+	"position": "top",
+  "modules-left": [ "custom/left_sidebar","cpu","temperature","memory" ,"disk","tray","custom/keypress"],
+  "modules-center": ["hyprland/workspaces","custom/notification","mpris"],
+  "modules-right": ["custom/weather","backlight","network","pulseaudio","clock","custom/shutdown"],
+   "reload_style_on_change":true,
+   "sway/window": {
+       "max-length": 50
+    },
+
+
+"custom/dir" : {
+  "exec":"pwd",
+  "format" : "{}"
+},
+
+"custom/keypress": {
+    "exec": "showkey --keycodes | awk '/keycode/ {print \"⌨ \" $2}'",
+    "interval": "once",
+    "restart-interval": 1
+  },
+
+"disk": {
+  "interval": 30,
+  "format": "  {percentage_used}%",
+  "path": "/"
+  },
+
+"tray": {
+  "icon-size": 12,
+  "spacing": 10
+},
+
+"pulseaudio": {
+    		"format": "{icon} {volume}%",
+    		"format-muted": "Muted",
+    		"format-icons": {
+      		"headphone": "",
+      		"hands-free": "",
+      		"headset": "",
+      		"default": ["", ""]
+    		},
+        "on-click": "amixer sset Master toggle",
+		    "on-click-right": "pavucontrol",
+    		"on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    		"on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
+  	},
+
+//Left
+// Center
+
+"clock": {
+ 	"format": "{:%I:%M %p}",
+ 	"format-alt": "{  %d·%m·%y}",
+ 	"tooltip-format": "<span>{calendar}</span>",
+ 	"calendar": {
+  	"mode": "month",
+  	"format": {
+      "months": "<span color='#ff6699'><b>{}</b></span>",
+      "days": "<span color='#cdd6f4'><b>{}</b></span>",
+      "weekdays": "<span color='#7CD37C'><b>{}</b></span>",
+      "today": "<span color='#ffcc66'><b>{}</b></span>"
+            	}
+            }
+    },
+
+"mpris": {
+	"class" :"sub_icon",
+	"format": "{player_icon} {dynamic}",
+	"format-paused": "{status_icon} <i>{dynamic}</i>",
+  "max-length": 45,
+  "tooltip": false,
+	"player-icons": {
+		"default": "▶",
+		"mpv": "🎵"
+	},
+	"status-icons": {
+		"paused": "⏸"
+	},
+
+// "ignored-players": ["firefox"]
+},
+
+//Right
+//SCREENSHOT GROUP
+
+"group/screenshot": {
+    "orientation": "inherit",
+  "drawer": {
+    "transition-duration": 500,
+		"transition-left-to-right": true,
+	},
+  "modules": [
+  	"custom/screenshot",
+		"custom/reigon",
+    "custom/windown",
+		"custom/active",
+  ]},
+
+"custom/screenshot": {
+	"format": "S",
+  "tooltip": false,
+  "on-click": "hyprshot -m output",
+} ,
+
+"custom/reigon": {
+	"class" :"sub_icon",
+	"format": "Reigon",
+         "tooltip": false,
+  "on-click":"hyprshot -m region",
+} ,
+
+"custom/windown": {
+	"class" :"sub_icon",
+	"format": "Screenshot",
+     "tooltip": false,
+  "on-click": "hyprshot -m window",
+} ,
+
+"custom/active": {
+	"class" :"sub_icon",
+	"format": "Active",
+         "tooltip": false,
+  "on-click":"hyprshot -m active",
+} ,
+//
+ "hyprland/language": {
+   "format": "{}",
+   "tooltip": false,
+   "format-uk": "UA",
+   "format-en": "US",
+   "format-vi": "VI",
+
+}, 
+//POWER GROUP
+"group/power": {
+    "orientation": "inherit",
+  "drawer": {
+    "transition-duration": 500,
+		"transition-left-to-right": true,
+	},
+  "modules": [
+		"custom/shutdown",
+    "custom/logout",
+		"custom/reboot",
+		"custom/suspend",
+		"custom/hibernate"
+	]
+},
+
+"custom/shutdown": {
+	"class" :"sub_icon",
+	"format": "⏻",
+  "on-click": "shutdown now",
+} ,
+
+"custom/reboot": {
+	"class" :"sub_icon",
+	"format": "Reboot",
+  "on-click":"reboot",
+} ,
+
+"custom/suspend": {
+	"class" :"sub_icon",
+	"format": "Suspend ",
+  "on-click": "systemctl suspend",
+} ,
+
+"custom/hibernate": {
+	"class" :"sub_icon",
+	"format": "Hibernate",
+  "on-click": "systemctl hibernate"
+} ,
+
+"custom/logout": {
+	"class" :"sub_icon",
+    "orientation": "inherit",
+  "drawer": {
+    "transition-duration": 500,
+		"transition-left-to-right": true,
+      	},
+	"format": "Logout",
+  "on-click": "sudo pkill -KILL -u lynla_13"
+},
+
+"custom/notification": {
+  "tooltip": false,
+  "format": "{icon}<span><sup>{0}</sup></span>",
+  "format-icons": {
+    "notification": "󱅫",
+    "none": "󰂚",
+    "dnd-notification": "󰂛",
+    "dnd-none": "󰂛",
+    "inhibited-notification": "󱅫",
+    "inhibited-none": "󰂚",
+    "dnd-inhibited-notification": "󰂛",
+    "dnd-inhibited-none": "󰂛"
+        },
+   "return-type": "json",
+   "exec-if": "which swaync-client",
+   "exec": "swaync-client -swb",
+   "on-click": "swaync-client -t -sw",
+   "on-click-right": "swaync-client -d -sw",
+   "escape": true
+ },
+
+//GROUP MPV
+
+"group/mpv": {
+  "orientation": "inherit",
+  "drawer": {
+    "transition-duration": 500,
+	  "transition-left-to-right": true,
+	  },
+  "modules": [
+    "custom/mpv",
+    "custom/mpvclip"
+  	]
+    },
+
+"custom/mpv": {
+	"format": "MPV",
+  "on-click": "mpv $(copyq read 0)",
+} ,
+
+"custom/mpvclip": {
+	"format": "Clip",
+  "on-click":"mpv $(copyq read 0)",
+} ,
+
+"custom/logout": {
+  "class": "sub_icon",
+  "orientation": "inherit",
+  "drawer": {
+    "transition-duration": 500,
+		"transition-left-to-right": true,
+	        },
+	"format": "Logout",
+  "on-click": "sudo pkill -KILL -u lynla_13"
+    },
+
+"cpu": {
+  "format": "  {usage}%",
+  "interval": 5,
+  "tooltip": false
+  	},
+
+"memory": {
+  "format": "  {percentage}%",
+  "interval": 5
+ 	},
+
+"temperature": {
+  "critical-threshold": 80,
+  "format": "  {temperatureC}°C",
+        },
+
+"tray": {
+  "icon-size": 14,
+  "spacing": 10
+        },
+
+"custom/weather": {
+  "format": "{}",
+  "return-type": "json",
+  "exec": "~/.config/waybar/scripts/weather.sh",
+  "interval": 10,
+  "on-click": "firefox https://wttr.in"
+},
+
+"bluetooth": {
+  "format-on": "",
+  "format-off": "",
+  "format-disabled": "󰂲",
+  "format-connected": "󰂴",
+  "format-connected-battery": "{device_battery_percentage}% 󰂴",
+  "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+  "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+  "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+  "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+  "on-click": "rofi-bluetooth",
+ }, 
+
+"network": {
+  "format-wifi": "   {essid}",
+  "format-ethernet":"🖧",
+  "format-disconnected": "",
+  "tooltip-format": "{ipaddr}",
+  "tooltip-format-wifi": "{essid} ({signalStrength}%)  | {ipaddr}",
+  "tooltip-format-ethernet": "{ifname} 🖧 | {ipaddr}",
+  "on-click": "networkmanager_dmenu"
+    },
+
+"custom/clipboard":{
+  "format":"",
+  "on-click": "cliphist list | rofi -dmenu | cliphist decode | wl-copy",
+  "interval":86400
+},
+
+"backlight": {
+  "device": "intel_backlight",
+  "format": "<span font='12'>{icon}</span>",
+  "format-icons": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ],
+  "on-scroll-down": "light -A 10",
+  "on-scroll-up": "light -U 10",
+  "smooth-scrolling-threshold": 1
+  },
+
+  "custom/left_sidebar" :{
+    "format": "",
+    "on-click" : "eww open left_sidebar --toggle"
+  }
+
+}

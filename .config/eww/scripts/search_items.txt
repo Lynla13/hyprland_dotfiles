@@ -1,0 +1,1 @@
+(box :orientation "v" :spacing 5 :class "apps" :halign "center" :valign "center"  (button :class "item" :onclick "firefox &" "firefox") (button :class "item" :onclick "firewall-cmd &" "firewall-cmd") (button :class "item" :onclick "firewalld &" "firewalld") (button :class "item" :onclick "firewall-offline-cmd &" "firewall-offline-cmd"))

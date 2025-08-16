@@ -1,0 +1,10 @@
+@import '../../.cache/wal/colors-waybar.css';
+@import './styles/animation.css';
+*{
+  all:unset;
+}
+
+@import './styles/left_sidebar.css';
+
+@import './styles/search_bar.css';
+

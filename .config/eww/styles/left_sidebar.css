@@ -1,0 +1,205 @@
+.left_sidebar {
+  margin-left: 10px;
+}
+
+.lsb_container {
+}
+
+.lsb_menu {
+  background-color: @background;
+  min-height: 50px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 5px;
+  border : 1px solid @foreground;
+}
+
+.lsb_titles {
+  background-color : @background;
+  min-height: 30px;
+  color: @color9;
+  border : 1px solid @foreground;
+
+}
+.lsb_homepage {
+  min-height: 885px;
+}
+
+.btn_menu {
+  color : @color9;
+  background-color: @background;
+  min-height: 40px;
+  min-width: 80px;
+  margin-left:5px;
+  padding-left:4px;
+  border : 1px solid @color9;
+}
+
+.btn_menu:hover {
+  color: @foreground;
+  background-color: @color4;
+}
+
+.lsb_container {
+    animation: dropIn 0.3s ease-out forwards;
+    opacity: 0;
+  }
+ 
+.lsb_top_row {
+  min-height: 150px;
+ }
+
+
+.file_link {
+  background-color: @background;
+  min-width: 150px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 1px solid @foreground;
+  color: @color9;
+}
+
+.btn_file {
+    min-height:20px;
+  }
+
+.btn_file:hover {
+  color:@color10;
+}
+
+.user_avatar {
+  background-color: @background;
+  min-width: 215px;
+  margin-right: 10px;
+  border: 1px solid @foreground;
+}
+
+.lsb_volume {
+  padding-left: 10px;
+  min-height: 50px;
+  background-color : @background;
+  color : @color9;
+  border: 1px solid @foreground;
+}
+
+.scl_volume{
+  min-width: 310px;
+}
+
+.scl_volume highlight {
+  background-color: @foreground;
+  padding: 0.3em;
+}
+
+.scl_volume trough {
+  background-color: @color2;
+  
+}
+
+.lsb_middle_row {
+  min-height: 200px;
+}
+
+.lsb_power_menu {
+  min-height: 40px;
+  padding: 10px;
+  padding-left: 55px;
+  margin-top: 10px;
+  border : 1px solid @foreground;
+  background-color: @background;
+}
+
+.btn_pw_menu {
+  color : @color6;
+  background-color: @background;
+  min-height: 40px;
+  min-width: 40px;
+  margin-right: 20px;
+  padding-left:9px;
+  border : 1px solid @color9;
+}
+
+.btn_pw_menu:hover {
+  color: @foreground;
+  background-color: @color9;
+}
+
+.lbs_quote {
+  margin-top: 10px;
+  min-height: 60px;
+  border: 1px solid @foreground;
+  background-color: @background;
+  padding: 10px;
+  color: @color9;
+}
+
+.lbs_notes {
+  margin-top: 10px;
+  min-height:130px;
+  border: 1px solid @foreground;
+  background-color: @background;
+  padding: 10px;
+  color: @color8;
+}
+
+.lb_notes {
+  font-size: 12pt;
+  margin-bottom: 10px;
+}
+
+.btn_notes {
+  color: @color9;
+}
+
+.btn_notes:hover {
+  color: @color8;
+}
+
+.lsb_music_widget {
+  margin-top: 10px;
+  min-height: 290px;
+  background-color: @background;
+  padding: 10px;
+  border: 1px solid @foreground;
+}
+
+.lsb_mw_bg_tm {
+  padding: 10px;
+}
+
+.lsb_mw_info {
+  margin-top: 10px;
+  font-size:14px;
+  color: @color8;
+}
+.lsb_progress_bar {
+  margin-top: 2px;
+  min-width: 310px;
+  margin-bottom: 5px;
+}
+
+.lsb_progress_bar highlight {
+  background-color: @color4;
+  padding: 0.3em;
+}
+
+.lsb_progress_bar trough {
+  background-color: @background;
+  border: 1px solid @color9;
+  
+}
+
+.lsb_mw_controls {
+  margin-top:5px;
+  background-color: @background;
+  color: @color9;
+  font-size: 18pt;
+  margin-bottom: 5px;
+  border: 1px solid @color9;
+}
+
+.lsb_mw_controls button:hover {
+  background-color: @color4;
+  color: @background;
+}
+

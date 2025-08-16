@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/lynla_13/Pictures/RIN/anime-girl-school-uniform-2560x1080-4819.jpg",
+    "alpha": "100",
+    "special": {
+        "background": "#2a1f25",
+        "foreground": "#e6ece8",
+        "cursor": "#e6ece8"
+    },
+    "colors": {
+        "color0": "#2a1f25",
+        "color1": "#3992E9",
+        "color2": "#768FD9",
+        "color3": "#9E95A2",
+        "color4": "#D8C5AD",
+        "color5": "#93A5DF",
+        "color6": "#ADD0F0",
+        "color7": "#e6ece8",
+        "color8": "#a1a5a2",
+        "color9": "#3992E9",
+        "color10": "#768FD9",
+        "color11": "#9E95A2",
+        "color12": "#D8C5AD",
+        "color13": "#93A5DF",
+        "color14": "#ADD0F0",
+        "color15": "#e6ece8"
+    }
+}

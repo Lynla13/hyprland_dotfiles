@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/lynla_13/Pictures/RIN/689942.png",
+    "alpha": "100",
+    "special": {
+        "background": "#2b2223",
+        "foreground": "#e7e8ea",
+        "cursor": "#e7e8ea"
+    },
+    "colors": {
+        "color0": "#2b2223",
+        "color1": "#C69B9A",
+        "color2": "#C6B9B9",
+        "color3": "#CBC0BF",
+        "color4": "#D4CCCB",
+        "color5": "#E5DAD2",
+        "color6": "#F0E6DB",
+        "color7": "#e7e8ea",
+        "color8": "#a1a2a3",
+        "color9": "#C69B9A",
+        "color10": "#C6B9B9",
+        "color11": "#CBC0BF",
+        "color12": "#D4CCCB",
+        "color13": "#E5DAD2",
+        "color14": "#F0E6DB",
+        "color15": "#e7e8ea"
+    }
+}

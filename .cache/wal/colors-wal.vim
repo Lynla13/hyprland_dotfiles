@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/lynla_13/Pictures/RIN/1228736.png"
+let background = "#2e1b25"
+let foreground = "#f3e3c7"
+let cursor     = "#f3e3c7"
+
+" Colors
+let color0  = "#2e1b25"
+let color1  = "#B38B66"
+let color2  = "#E09D69"
+let color3  = "#F7CA75"
+let color4  = "#937988"
+let color5  = "#AE9894"
+let color6  = "#DFAF8F"
+let color7  = "#f3e3c7"
+let color8  = "#aa9e8b"
+let color9  = "#B38B66"
+let color10 = "#E09D69"
+let color11 = "#F7CA75"
+let color12 = "#937988"
+let color13 = "#AE9894"
+let color14 = "#DFAF8F"
+let color15 = "#f3e3c7"
