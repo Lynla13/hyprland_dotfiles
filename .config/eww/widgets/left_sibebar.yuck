@@ -1,46 +1,55 @@
 ;; ** Variables
 
+;; --- Widget Definition ---
+
+
 ;; --- Listeners & Polls ---
 ;; Use `deflisten` with `playerctl --follow` to react to player events
 ;; efficiently. When a player quits, `playerctl` exits, and the `|| echo`
 ;; part provides a default value, ensuring the UI updates correctly.
+
 (deflisten song_title    :initial "No Music Playing"
 "playerctl metadata --format '{{title}}' --follow || echo 'No Music Playing'")
-
 (deflisten song_artist   :initial "Unknown Artist"
 "playerctl metadata --format '{{artist}}' --follow || echo 'Unknown Artist'")
-
 (deflisten player_status :initial "Stopped"
 "playerctl metadata --format '{{status}}' --follow || echo 'Stopped'")
 
 ;; Polling is still needed for things that change continuously, like position,
 ;; but we can use longer, more efficient intervals.
 (defpoll song_length_s   :interval "2s"
-"playerctl metadata mpris:length | awk '{print $1 / 1000000}' || echo 1")
-
+  "playerctl metadata mpris:length | awk '{print $1 / 1000000}' || echo 1")
 (defpoll song_position_s    :interval "1s" "playerctl position || echo 0")
-
 (defpoll formatted_position :interval "1s" "playerctl position -f '{{duration(position)}}' || echo '0:00'")
 
 ;; Cover art and volume can also be polled at a slower rate.
 (defpoll cover_art_path :interval "1s" "/home/lynla_13/.config/eww/scripts/get_cover.sh")
 
+;; Time vars
+(defpoll HOUR :interval "5s" `date +\"%I\"`)
+(defpoll MIN :interval "5s" `date +\"%M\"`)
+(defpoll MER :interval "5s" `date +\"%p\"`)
+(defpoll DAY :interval "5s" `date +\"%A\"`)
 
+;; Timer vars
+(deflisten timer_value :initial "0" "tail -F ~/.config/eww/scripts/timer.txt")
+(defpoll timer_hour_v :interval "36s" 'echo $(tail -n 1  ~/.config/eww/scripts/timer.txt)')
+;; Uptime vars
+(defpoll UPHOUR :interval "5s" `uptime -p | awk '{print $2 \" \" $3}' | sed 's/,//g'`)
+(defpoll UPMIN :interval "5s" `uptime -p | awk '{print $4 \" \" $5}'`)
+;; Image vars
 (defvar image-files "[]")
-
 (defvar my-json "[10, 12, 33]")
-
 (defpoll current_volume :interval 100 "echo |pactl get-sink-volume @DEFAULT_SINK@ | awk -F/ '{print $2}' | tr -d ' ' | sed 's/%$//'")
 (defpoll username :interval 36000  "whoami")
-
 (defpoll background :interval 36000 "echo | ps aux | grep swaybg | awk -F'swaybg' '{print $2}'| awk '{print $2}' | head -n 1" )
-
-(defpoll note :interval 60 "head -n 5 ~/Documents/notes.txt")
-
+(defpoll note :interval 60 "head -n 6 ~/Documents/notes.txt")
 (defpoll quote :interval "1000s" "fortune -s -n 70")
+(defvar show_home true)
+(defvar timer_tg 0)
+(defvar app_tg 0)
 
-(defvar show_home false)
-
+;;; System notify
 
 ;; --- Widget Definition ---
 
@@ -69,15 +78,14 @@
   )
 )
 
-
-
+;;; clock
 
 (defwidget lbs_notes []
   (box :spacing 1 :class "lbs_notes" :orientation "v" :space-evenly "false" 
     (label :text {note} :wrap true :class "lb_notes" )
     (box :orientation "h"
       (button :class "btn_notes" :onclick "echo '' > ~/Documents/notes.txt" "[ Empty ]")
-      (button :class "btn_notes" :onclick "xdg-open ~/Documents/notes.txt" "[ Edit TODO ]")
+      (button :class "btn_notes" :onclick "hyprctl dispatch exec kitty nvim ~/Documents/notes.txt" "[ Edit TODO ]")
     )
   )
 )
@@ -102,7 +110,7 @@
 
 (defwidget lsb_titles []
   (box :class "lsb_titles"
-    (label :text {username})    
+    (label :text "${username} . ${DAY}")    
   )
 )
 
@@ -120,82 +128,134 @@
 
 (defwidget lsb_power_menu []
   (box :class "lsb_power_menu" :orientation "horizontal" :space-evenly "false"
-    (button :class "btn_pw_menu" :onclick "shurdown now"
+    (button :class "btn_pw_menu" :onclick "shutdown now"
       (box (label :text " ") ))
     (button :class "btn_pw_menu" :onclick "reboot"
       (box (label :text " ")))
-    (button :class "btn_pw_menu" :onclick "hyprlock"
-      (box (label :text " ")))
     (button :class "btn_pw_menu" :onclick "hyprctl dispatch exit"
       (box (label :text " ")))
-
+    (button :class "btn_pw_menu" :onclick "eww update app_tg=0"
+      (box (label :text " ")))
 ))
 
-
-;;;;;;;;HOMEPAGE
-
-(defwidget lsb_homepage []
-  (revealer :transition "slideup" :reveal {show_home}
-    (box :class "lsb_homepage" :orientation "vertical" :spacing 10 
-    :space-evenly "false"
-      (box :class "lsb_top_row" :orientation "h" :spacing :10 :space-evenly "false"
-        (box :class "user_avatar"
-          (image :path {background}  :image-width 200 
-                 :image-height 150)
-        )
-        (box :class "file_link" :orientation "v" :spacing 1
-          (button :class "btn_file" :onclick "xdg-open ~/Downloads"
-            (box (label :text "  Downloads") ))
-          (button :class "btn_file" :onclick "xdg-open ~/Pictures"
-            (box (label :text "  Pictures") ))
-          (button :class "btn_file" :onclick "xdg-open ~/Videos"
-            (box (label :text "  Videos") ))
-          (button :class "btn_file" :onclick "xdg-open ~/Documents"
-            (box (label :text " Documents") ))
-          (button :class "btn_file" :onclick "xdg-open ~/.config"
-            (box (label :text "  Configs") ))
-
-        ))
-      (box :class "lsb_middle_row" :orientation "v" :space-evenly "false"
-        (lsb_volume)
-        (lsb_power_menu)
-        (lbs_quote)
-        (lbs_notes)
-
-      )
-      (box :class "lsb_bottom_row" :orientation "v" :spacing :10 
-        ( lsb_music_widget)
-      )
-  
-     )
-    )
-)
-  
-
+(defwidget lsb_app_menu []
+  (box :class "lsb_power_menu" :orientation "horizontal" :space-evenly "false"
+    (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec krita"
+      (box (label :text " ") ))
+    (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec firefox"
+      (box (label :text "󰈹 ")))
+    (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec kitty ranger"
+      (box (label :text "󰉋 ")))
+    (button :class "btn_pw_menu" :onclick "eww update app_tg=1"
+      (box (label :text " ")))
+))
 
 (defwidget lsb_menu []
   (box :class "lsb_menu" :orientation "horizontal" :space-evenly "false"
-    (button :class "btn_menu" :onclick "eww update show_home=true"
+    (button :class "btn_menu" :onclick "eww update timer_tg=0 app_tg=0"
       (box (label :text " " )))
-    (button :class "btn_menu" :onclick "eww update show_home=false"
+    (button :class "btn_menu" :onclick "eww update timer_tg=1 app_tg=1"
       (box (label :text " ")))
-    (button :class "btn_menu" :onclick "notify-send 'EWW' 'Button được nhấn!'"
+    (button :class "btn_menu" :onclick "~/.config/scripts/wallpaper_change.sh"
       (box (label :text " ")))
-    (button :class "btn_menu" :onclick "notify-send 'EWW' 'Button được nhấn!'"
+    (button :class "btn_menu" :onclick "~/.config/scripts/wallpaper_change.sh"
       (box (label :text " ")))
 
 ))
 
+(defwidget timer []
+  (box :class "lsb_timer" :orientation "h" :space-evenly "true"
+    (box :class "cp_timer" :space-evenly "true"
+      (eventbox :onclick "eww update timer_tg=0"
+        (box :orientation "v"
+          (label :text "1 HOUR TIMER" :style "font-size : 16px")
+          (label :text "Time remian: ${round (60-((36 * timer_hour_v)/60),1) } Min")))
+      (eventbox :onclick "hyprctl dispatch exec ~/.config/eww/scripts/timer.sh 36" :class "timer"
+       (circular-progress :value {timer_value}  :thickness 11 :start-at 0 :clockwise "false" 
+         (label :text "${timer_value}%"))))
+  )
+)
+
+(defwidget home_bkg [] 
+ (box :class "lsb_top_row" :orientation "h" :spacing :10 :space-evenly "false"
+          (box :class "user_avatar"
+           (eventbox :onclick "eww update timer_tg=1"
+            (label :text "${HOUR}:${MIN}" :style "font-size: 70px;" :class "clock"            
+            ))
+        )
+         (box :class "file_link" :orientation "v" :spacing 1
+            (button :class "btn_file" :onclick "xdg-open https://www.youtube.com"
+              (box (label :text "Youtube") ))
+            (button :class "btn_file" :onclick "xdg-open https://www.reddit.com"
+              (box (label :text "Reddit") ))
+            (button :class "btn_file" :onclick "xdg-open https://www.youtube.com"
+              (box (label :text "Posemaniacs") ))
+            (button :class "btn_file" :onclick "xdg-open https://www.youtube.com"
+              (box (label :text "Facebook") ))
+            (button :class "btn_file" :onclick "xdg-open https://www.pinterest.com"
+              (box (label :text "Pinterest") ))
+
+          )
+          )
+
+)
+
+(defwidget home_note []
+ (box :class "lsb_middle_row" :orientation "v" :space-evenly "false"
+        (lsb_volume)
+        (stack :selected {app_tg} :transition "slideleft"
+         (lsb_app_menu)
+         (lsb_power_menu)
+
+        )
+        (lbs_quote)
+        (lbs_notes)
+      )
+)
+
+;;;; Rofi style search
+(defwidget searchapps []
+  (eventbox :onhoverlost "eww close searchapps"
+    (box :orientation "v" :space-evenly false :class "search-win" :halign "top" :valign "top"
+      (box :orientation "h" :space-evenly false :class "searchapps-bar" :halign "top" :valign "top"
+        (label :class "search-label" :text "search:")
+        (input :class "search-bar" 
+               :onchange "~/.config/eww/scripts/search.sh {}")
+      (literal :halign "center" :valign "center" :class "app-container" :content search_listen)))))
+
+
+
+;; HOMEPAGE
+
+(defwidget lsb_homepage []
+      (box :class "lsb_homepage" :orientation "vertical" :spacing 10 
+    :space-evenly "false"
+      (stack :selected {timer_tg} :transition "slideup"  
+        (home_bkg)
+        (timer)
+       )
+      
+      (home_note)
+      (box :class "lsb_bottom_row" :orientation "v" :spacing :10 
+        ( lsb_music_widget)
+  
+     )
+))
+  
+;; WORKPAGE
+
+
 ;; ** Windows 
 ;; Left Sidebar
 
-(defwindow left_sidebar :monitor 0  :class "left_sidebar"
-  :geometry (geometry :x "0%" :y "10px" :width "20%"  :height "95%"  :anchor "top left")
-  :stacking "fg" :reserve (struts :distance "40px" :side "top")
-  :windowtype "dock" :wm-ignore false
+(defwindow left_sidebar :monitor 0  :class "left_sidebar" :exclusive true
+  :geometry (geometry :x "0%" :y "10px" :width "20%"  :height "95%"  :anchor "left center")
+  :stacking "fg" 
+  :windowtype "dock"
   (box :class "lsb_container" :orientation "v" :space-evenly "false" :spacing 10
-    (lsb_titles) 
-    (lsb_homepage)
+    (lsb_titles)
+    (revealer :transition "slideup" :reveal {show_home}
+        (lsb_homepage))
     (lsb_menu)
   )
 )

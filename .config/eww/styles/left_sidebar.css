@@ -4,13 +4,14 @@
 
 .lsb_container {
 }
-
+.clock {
+  color: @color9;
+}
 .lsb_menu {
   background-color: @background;
   min-height: 50px;
   padding-top: 7px;
   padding-bottom: 7px;
-  padding-left: 5px;
   border : 1px solid @foreground;
 }
 
@@ -22,15 +23,39 @@
 
 }
 .lsb_homepage {
-  min-height: 885px;
+  min-height: 10px;
+}
+.lsb_timer {
+  background-color : @background;
+  min-height: 133px;
+  padding :10px;
 }
 
+.cp_timer {
+  color: @color9;
+  min-width: 220px;
+  padding: 10px;
+  border : 1px solid @color9;
+}
+
+.cp_timer circular-progress {
+    background-color: @color8;
+
+}
+
+.timer:hover {
+  color: @color6;
+}
+
+.btn_timer:hover {
+  color:@color8;
+}
 .btn_menu {
   color : @color9;
   background-color: @background;
   min-height: 40px;
-  min-width: 80px;
-  margin-left:5px;
+  min-width: 70px;
+  margin-left:14px;
   padding-left:4px;
   border : 1px solid @color9;
 }
@@ -46,7 +71,7 @@
   }
  
 .lsb_top_row {
-  min-height: 150px;
+  min-height: 153px;
  }
 
 
@@ -69,7 +94,7 @@
 
 .user_avatar {
   background-color: @background;
-  min-width: 215px;
+  min-width: 210px;
   margin-right: 10px;
   border: 1px solid @foreground;
 }
@@ -87,13 +112,12 @@
 }
 
 .scl_volume highlight {
-  background-color: @foreground;
+  background-color: @color4;
   padding: 0.3em;
 }
 
 .scl_volume trough {
-  background-color: @color2;
-  
+  border: 1px solid @color9;
 }
 
 .lsb_middle_row {
@@ -126,16 +150,17 @@
 
 .lbs_quote {
   margin-top: 10px;
-  min-height: 60px;
+  min-height: 68px;
   border: 1px solid @foreground;
   background-color: @background;
   padding: 10px;
   color: @color9;
+  font-size: 13pt;
 }
 
 .lbs_notes {
   margin-top: 10px;
-  min-height:130px;
+  min-height:155px;
   border: 1px solid @foreground;
   background-color: @background;
   padding: 10px;
@@ -201,5 +226,9 @@
 .lsb_mw_controls button:hover {
   background-color: @color4;
   color: @background;
+}
+
+.menu {
+  margin-top: 10px;
 }
 

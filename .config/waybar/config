@@ -3,7 +3,7 @@
 	"position": "top",
   "modules-left": [ "custom/left_sidebar","cpu","temperature","memory" ,"disk","tray","custom/keypress"],
   "modules-center": ["hyprland/workspaces","custom/notification","mpris"],
-  "modules-right": ["custom/weather","backlight","network","pulseaudio","clock","custom/shutdown"],
+  "modules-right": ["custom/weather","backlight","network"],
    "reload_style_on_change":true,
    "sway/window": {
        "max-length": 50
