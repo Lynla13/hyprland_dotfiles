@@ -1,23 +1,33 @@
-@import '~/.cache/wal/colors.css';
+@import '~/.cache/wal/colors';
 
 window {
-    background-color: ;
-    border: 1px solid @foreground;
+    color: --wofi-color9;
+    background-color:--wofi-color10;
+    border: 1px solid --wofi-color1;
 }
 
 #input {
-    background-color: @color2;
-    color: #f8f8f2;
-    border-bottom: 1px solid @color9;
+    background-color: --wofi-color0;
+    color: --wofi-color1;
+    border: 1px solid --wofi-color1;
     padding: 5px;
 }
 
 #entry {
     padding: 5px;
+    background-color:--wofi-color0;
 }
 
 #entry:selected {
-    background-color: #6272a4;
-    color: #f8f8f2;
+    background-color: --wofi-color9;
+    color: --wofi-color0;
 }
 
+#text {
+  margin-left:10px;
+  color: --wofi-color9;
+}
+
+#text:selected {
+  color:--wofi-color2;
+}

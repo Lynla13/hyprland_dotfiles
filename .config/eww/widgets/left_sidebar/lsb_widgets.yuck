@@ -1,55 +1,3 @@
-;; ** Variables
-
-;; --- Widget Definition ---
-
-
-;; --- Listeners & Polls ---
-;; Use `deflisten` with `playerctl --follow` to react to player events
-;; efficiently. When a player quits, `playerctl` exits, and the `|| echo`
-;; part provides a default value, ensuring the UI updates correctly.
-
-(deflisten song_title    :initial "No Music Playing"
-"playerctl metadata --format '{{title}}' --follow || echo 'No Music Playing'")
-(deflisten song_artist   :initial "Unknown Artist"
-"playerctl metadata --format '{{artist}}' --follow || echo 'Unknown Artist'")
-(deflisten player_status :initial "Stopped"
-"playerctl metadata --format '{{status}}' --follow || echo 'Stopped'")
-
-;; Polling is still needed for things that change continuously, like position,
-;; but we can use longer, more efficient intervals.
-(defpoll song_length_s   :interval "2s"
-  "playerctl metadata mpris:length | awk '{print $1 / 1000000}' || echo 1")
-(defpoll song_position_s    :interval "1s" "playerctl position || echo 0")
-(defpoll formatted_position :interval "1s" "playerctl position -f '{{duration(position)}}' || echo '0:00'")
-
-;; Cover art and volume can also be polled at a slower rate.
-(defpoll cover_art_path :interval "1s" "/home/lynla_13/.config/eww/scripts/get_cover.sh")
-
-;; Time vars
-(defpoll HOUR :interval "5s" `date +\"%I\"`)
-(defpoll MIN :interval "5s" `date +\"%M\"`)
-(defpoll MER :interval "5s" `date +\"%p\"`)
-(defpoll DAY :interval "5s" `date +\"%A\"`)
-
-;; Timer vars
-(deflisten timer_value :initial "0" "tail -F ~/.config/eww/scripts/timer.txt")
-(defpoll timer_hour_v :interval "36s" 'echo $(tail -n 1  ~/.config/eww/scripts/timer.txt)')
-;; Uptime vars
-(defpoll UPHOUR :interval "5s" `uptime -p | awk '{print $2 \" \" $3}' | sed 's/,//g'`)
-(defpoll UPMIN :interval "5s" `uptime -p | awk '{print $4 \" \" $5}'`)
-;; Image vars
-(defvar image-files "[]")
-(defvar my-json "[10, 12, 33]")
-(defpoll current_volume :interval 100 "echo |pactl get-sink-volume @DEFAULT_SINK@ | awk -F/ '{print $2}' | tr -d ' ' | sed 's/%$//'")
-(defpoll username :interval 36000  "whoami")
-(defpoll background :interval 36000 "echo | ps aux | grep swaybg | awk -F'swaybg' '{print $2}'| awk '{print $2}' | head -n 1" )
-(defpoll note :interval 60 "head -n 6 ~/Documents/notes.txt")
-(defpoll quote :interval "1000s" "fortune -s -n 70")
-(defvar show_home true)
-(defvar timer_tg 0)
-(defvar app_tg 0)
-
-;;; System notify
 
 ;; --- Widget Definition ---
 
@@ -78,13 +26,21 @@
   )
 )
 
+
+(defwidget cal [] 
+  (box :class "lbs_cal"
+     (calendar :halign "center" :valign "center" :class "cal" :day {DATE} :month {MONTH} :year {YEAR}   :onclick 'eww update app_tg =1'   
+      
+     )
+     )
+  )
 ;;; clock
 
 (defwidget lbs_notes []
   (box :spacing 1 :class "lbs_notes" :orientation "v" :space-evenly "false" 
     (label :text {note} :wrap true :class "lb_notes" )
     (box :orientation "h"
-      (button :class "btn_notes" :onclick "echo '' > ~/Documents/notes.txt" "[ Empty ]")
+      (button :class "btn_notes" :onclick "echo '==========${DATE}/${MONTH}/${YEAR}==========' > ~/Documents/notes.txt" "[ Empty ]")
       (button :class "btn_notes" :onclick "hyprctl dispatch exec kitty nvim ~/Documents/notes.txt" "[ Edit TODO ]")
     )
   )
@@ -128,6 +84,8 @@
 
 (defwidget lsb_power_menu []
   (box :class "lsb_power_menu" :orientation "horizontal" :space-evenly "false"
+    (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec gnome-software"
+      (box (label :text "󰓜 ") ))
     (button :class "btn_pw_menu" :onclick "shutdown now"
       (box (label :text " ") ))
     (button :class "btn_pw_menu" :onclick "reboot"
@@ -142,6 +100,8 @@
   (box :class "lsb_power_menu" :orientation "horizontal" :space-evenly "false"
     (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec krita"
       (box (label :text " ") ))
+  (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec kitty"
+      (box (label :text " ") ))
     (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec firefox"
       (box (label :text "󰈹 ")))
     (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec kitty ranger"
@@ -164,8 +124,8 @@
 ))
 
 (defwidget timer []
-  (box :class "lsb_timer" :orientation "h" :space-evenly "true"
-    (box :class "cp_timer" :space-evenly "true"
+  (box :class "lsb_timer" :orientation "h" :space-evenly "false"
+    (box :class "cp_timer" :space-evenly "false"
       (eventbox :onclick "eww update timer_tg=0"
         (box :orientation "v"
           (label :text "1 HOUR TIMER" :style "font-size : 16px")
@@ -180,7 +140,7 @@
  (box :class "lsb_top_row" :orientation "h" :spacing :10 :space-evenly "false"
           (box :class "user_avatar"
            (eventbox :onclick "eww update timer_tg=1"
-            (label :text "${HOUR}:${MIN}" :style "font-size: 70px;" :class "clock"            
+            (label :text "${HOUR}:${MIN}" :style "font-size: 65px;" :class "clock"            
             ))
         )
          (box :class "file_link" :orientation "v" :spacing 1
@@ -188,10 +148,10 @@
               (box (label :text "Youtube") ))
             (button :class "btn_file" :onclick "xdg-open https://www.reddit.com"
               (box (label :text "Reddit") ))
-            (button :class "btn_file" :onclick "xdg-open https://www.youtube.com"
-              (box (label :text "Posemaniacs") ))
-            (button :class "btn_file" :onclick "xdg-open https://www.youtube.com"
-              (box (label :text "Facebook") ))
+            (button :class "btn_file" :onclick "hyprctl dispatch exec kitty ranger ~/Pictures/"
+              (box (label :text "/Pictures") ))
+            (button :class "btn_file" :onclick "hyprctl dispatch exec kitty ranger ~/dotfiles/.config"
+              (box (label :text "/Config") ))
             (button :class "btn_file" :onclick "xdg-open https://www.pinterest.com"
               (box (label :text "Pinterest") ))
 
@@ -208,8 +168,10 @@
          (lsb_power_menu)
 
         )
-        (lbs_quote)
-        (lbs_notes)
+        (stack :selected {app_tg} :transition "slideleft"
+          (lbs_notes)
+          (lbs_quote)
+        )
       )
 )
 
@@ -230,32 +192,15 @@
 (defwidget lsb_homepage []
       (box :class "lsb_homepage" :orientation "vertical" :spacing 10 
     :space-evenly "false"
-      (stack :selected {timer_tg} :transition "slideup"  
         (home_bkg)
-        (timer)
-       )
-      
-      (home_note)
-      (box :class "lsb_bottom_row" :orientation "v" :spacing :10 
+        (home_note)
+           (box :class "lsb_bottom_row" :orientation "v" :spacing :10 
         ( lsb_music_widget)
+      )
   
      )
-))
+)
   
 ;; WORKPAGE
 
 
-;; ** Windows 
-;; Left Sidebar
-
-(defwindow left_sidebar :monitor 0  :class "left_sidebar" :exclusive true
-  :geometry (geometry :x "0%" :y "10px" :width "20%"  :height "95%"  :anchor "left center")
-  :stacking "fg" 
-  :windowtype "dock"
-  (box :class "lsb_container" :orientation "v" :space-evenly "false" :spacing 10
-    (lsb_titles)
-    (revealer :transition "slideup" :reveal {show_home}
-        (lsb_homepage))
-    (lsb_menu)
-  )
-)

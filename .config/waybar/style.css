@@ -24,16 +24,25 @@ window#waybar {
 }
 
 #workspaces{
+  padding-bottom: 2px;
+  padding-left:2px;
+  background-color: @background;
   border-radius: 0px;
-	color: @text;
 	margin-right:20px;
 
   }
 
+#window {
+  padding-left:5px;
+	min-width: 50px;
+  color: @color9;
+  margin-right: 10px;
+  background-color: @background;
+  border: 1px solid @foreground;
+}
 #workspaces button {
   color: @text;
   margin-right:2px;
-  border: 1px solid @foreground;
   }
 
 #workspaces button:hover {
@@ -62,7 +71,7 @@ window#waybar {
 #network,
 #pulseaudio,
 #clock {
-  margin-left:5px;
+  margin-right:5px;
   color: @color9;
   background-color:@background;
   padding-left:10px;
@@ -79,7 +88,6 @@ window#waybar {
 #memory,
 #temperature,
 #tray{
-  margin-right: 5px;
   margin-left:5px;
   color:@color9;
   background-color: @background;

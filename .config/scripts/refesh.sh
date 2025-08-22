@@ -1,4 +1,4 @@
 pkill waybar && waybar 
-pkill swaync && swaync 
+pkill swaync && swaync  
 eww r &
 notify-send "Reload Theme" "Refesh succesfull"
