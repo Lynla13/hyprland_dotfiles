@@ -1,28 +1,31 @@
 .left_sidebar {
   background-color:@background;
   padding:9px;
-  border : 1px solid @foreground;
+  border : 1px solid @purple;
+  border-radius: 10px;
 
 }
 
 .lsb_container {
 }
 .clock {
-  color: @color9;
+  color: @foreground;
 }
 .lsb_menu {
   background-color: @background;
   min-height: 50px;
   padding-top: 7px;
   padding-bottom: 7px;
-  border : 1px solid @foreground;
+  border : 1px solid @purple;
+  border-radius: 5px;
 }
 
 .lsb_titles {
   background-color : @background;
   min-height: 30px;
-  color: @color9;
-  border : 1px solid @foreground;
+  color: @foreground;
+  border : 1px solid @purple;
+  border-radius: 5px;
 
 }
 .lsb_homepage {
@@ -32,17 +35,18 @@
   background-color : @background;
   min-height: 133px;
   padding :10px;
+  border-radius: 5px;
 }
 
 .cp_timer {
-  color: @color9;
+  color: @foreground;
   min-width: 20px;
   padding: 5px;
-  border : 1px solid @color9;
+  border : 1px solid @purple;
 }
 
 .cp_timer circular-progress {
-    background-color: @color8;
+    background-color: @yellow;
 
 }
 
@@ -50,30 +54,30 @@
   min-width: 150px;
 }
 .timer:hover {
-  color: @color6;
+  color: @selection;
 }
 
 .btn_timer:hover {
-  color:@color8;
+  color:@selection;
 }
 .btn_menu {
-  color : @color9;
+  color : @foreground;
   background-color: @background;
   min-height: 40px;
   min-width: 70px;
   margin-left:14px;
-  padding-left:4px;
-  border : 1px solid @color9;
+  padding-left:5px;
+  border : 1px solid @purple;
+  border-radius: 10px;
 }
 
 .btn_menu:hover {
   color: @foreground;
-  background-color: @color4;
+  background-color: @selection;
 }
 
 .lsb_container {
     animation: dropIn 0.3s ease-out forwards;
-    opacity: 0;
   }
  
 .lsb_top_row {
@@ -86,8 +90,8 @@
   min-width: 150px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border: 1px solid @foreground;
-  color: @color9;
+  border: 1px solid @purple;
+  color: @foreground;
 }
 
 .btn_file {
@@ -95,22 +99,24 @@
   }
 
 .btn_file:hover {
-  color:@color10;
+  color:@yellow;
 }
 
 .user_avatar {
   background-color: @background;
   min-width: 210px;
   margin-right: 10px;
-  border: 1px solid @foreground;
+  border: 1px solid @purple;
+  border-radius: 5px;
 }
 
 .lsb_volume {
   padding-left: 10px;
   min-height: 50px;
   background-color : @background;
-  color : @color9;
-  border: 1px solid @foreground;
+  color : @foreground;
+  border: 1px solid @purple;
+  border-radius: 5px;
 }
 
 .scl_volume{
@@ -118,12 +124,12 @@
 }
 
 .scl_volume highlight {
-  background-color: @color4;
+  background-color: @foreground;
   padding: 0.3em;
 }
 
 .scl_volume trough {
-  border: 1px solid @color9;
+  border: 1px solid @purple;
 }
 
 .lsb_middle_row {
@@ -135,51 +141,57 @@
   padding: 10px;
   padding-left: 50px;
   margin-top: 5px;
-  border : 1px solid @foreground;
+  border : 1px solid @purple;
+  border-radius: 5px;
   background-color: @background;
 }
 
 .btn_pw_menu {
-  color : @color9;
+  color : @foreground;
   background-color: @background;
   min-height: 35px;
   min-width: 35px;
   margin-right: 10px;
   padding-left:9px;
-  border : 1px solid @color9;
+  border : 1px solid @purple;
+  border-radius: 15px;
 }
 
 .btn_pw_menu:hover {
   color: @foreground;
-  background-color: @color9;
+  background-color: @selection;
+  border-radius: 15px;
 }
 
 .lbs_quote {
   margin-top: 5px;
   min-height: 250px;
-  border: 1px solid @foreground;
+  border: 1px solid @purple;
+  border-radius: 5px;
   background-color: @background;
   padding: 10px;
-  color: @color9;
+  color: @foreground;
   font-size: 13pt;
 }
 
 .lbs_notes {
   margin-top: 5px;
   min-height:250px;
-  border: 1px solid @foreground;
+  border: 1px solid @purple;
+  border-radius: 5px;
   background-color: @background;
   padding: 10px;
-  color: @color8;
+  color: @comment;
 }
 
 .lbs_cal {
   margin-top: 5px;
   min-height:258px;
-  border: 1px solid @foreground;
+  border: 1px solid @purple;
+  border-radius: 5px;
   background-color: @background;
   padding: 10px;
-  color: @color9;
+  color: @foreground;
   font-size:17px;
 }
 
@@ -194,11 +206,11 @@
 }
 
 .btn_notes {
-  color: @color9;
+  color: @foreground;
 }
 
 .btn_notes:hover {
-  color: @color8;
+  color: @selection;
 }
 
 .lsb_music_widget {
@@ -206,7 +218,8 @@
   min-height: 290px;
   background-color: @background;
   padding: 10px;
-  border: 1px solid @foreground;
+  border: 1px solid @purple;
+  border-radius: 5px;
 }
 
 .lsb_mw_bg_tm {
@@ -216,7 +229,7 @@
 .lsb_mw_info {
   margin-top: 5px;
   font-size:14px;
-  color: @color8;
+  color: @comment;
 }
 .lsb_progress_bar {
   margin-top: 2px;
@@ -225,28 +238,30 @@
 }
 
 .lsb_progress_bar highlight {
-  background-color: @color4;
+  background-color: @foreground;
   padding: 0.3em;
 }
 
 .lsb_progress_bar trough {
   background-color: @background;
-  border: 1px solid @color9;
+  border: 1px solid @purple;
   
 }
 
 .lsb_mw_controls {
   margin-top:5px;
   background-color: @background;
-  color: @color9;
+  color: @foreground;
   font-size: 18pt;
   margin-bottom: 5px;
-  border: 1px solid @color9;
+  border: 1px solid @purple;
+  border-radius: 10px;
 }
 
 .lsb_mw_controls button:hover {
-  background-color: @color4;
-  color: @background;
+  background-color: @selection;
+  color: @foreground;
+  border-radius: 12px;
 }
 
 .menu {

@@ -84,7 +84,7 @@
 
 (defwidget lsb_power_menu []
   (box :class "lsb_power_menu" :orientation "horizontal" :space-evenly "false"
-    (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec gnome-software"
+    (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec discover"
       (box (label :text "󰓜 ") ))
     (button :class "btn_pw_menu" :onclick "shutdown now"
       (box (label :text " ") ))

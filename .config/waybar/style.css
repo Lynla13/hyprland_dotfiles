@@ -1,4 +1,4 @@
-@import "../../.cache/wal/colors-waybar.css";
+@import "../../.config/colors/dracular/waybar/colors.css";
 * {
   /* reference the color by using @color-name */
   border:none;
@@ -29,37 +29,42 @@ window#waybar {
   background-color: @background;
   border-radius: 0px;
 	margin-right:20px;
-
+  border: 1px solid @purple;
+  border-radius: 10px;
   }
 
 #window {
   padding-left:5px;
-	min-width: 50px;
-  color: @color9;
+  padding-right:5px;
+	min-width: 1px;
+  color: @foreground;
   margin-right: 10px;
   background-color: @background;
-  border: 1px solid @foreground;
+  border: 1px solid @purple;
+  border-radius: 10px;
 }
 #workspaces button {
-  color: @text;
+  color: @foreground;
   margin-right:2px;
   }
 
 #workspaces button:hover {
-	background-color: @foreground;
-	color: @text;
+	background-color: @selection;
+	color: @foreground;
 }
 #workspaces button.active {
-	background-color: @background;
-	color: @color9;
+	background-color: @background-darker;
+	color: @purple;
 }
 
 #mpris {
 	min-width: 10px;
 	background-color: @background;
-	color: @color9;
+	color: @foreground;
 	margin-left: 10px;
 	padding-left :10px;
+  border-radius:10px;
+  border: 1px solid @purple;
 }
 
 
@@ -72,12 +77,12 @@ window#waybar {
 #pulseaudio,
 #clock {
   margin-right:5px;
-  color: @color9;
+  color: @foreground;
   background-color:@background;
   padding-left:10px;
   padding-right: 10px;
-  border: 1px solid @foreground;
-  
+  border: 1px solid @purple;
+  border-radius: 10px;
 }
 
 #custom-left_sidebar,
@@ -89,23 +94,24 @@ window#waybar {
 #temperature,
 #tray{
   margin-left:5px;
-  color:@color9;
+  color:@foreground;
   background-color: @background;
   padding-right:10px;
   padding-left:10px;
   min-width: 20px;
-  border: 1px solid @foreground;
+  border: 1px solid @purple;
+  border-radius: 10px;
 }
 
 #custom-shutdown {
-  color: @color9;
+  color: @foreground;
   background-color:@background;
   font-size:12pt;
   padding-right:10px;
   padding-left:10px;
   margin-left:10px;
   border: 1px solid @foreground;
-  margin-right:5px;
+  margin-right:10px;
 
 }
 
@@ -113,7 +119,7 @@ window#waybar {
 #custom-logout,
 #custom-suspend,
 #custom-hibernate{
-  color: @color9;
+  color: @foreground;
   background-color:@background;
   font-size:8pt;
   padding-left:10px;
@@ -125,7 +131,7 @@ window#waybar {
 
 #custom-left_sidebar:hover,
 #custom-notification:hover {
-  background-color:@foreground;
+  background-color:@selection;
 
 }
 
@@ -139,7 +145,7 @@ window#waybar {
 }
 #pulseaudio:hover,
 #mpris:hover {
-   background-color: @foreground;
+   background-color: @selection;
 }
 
 

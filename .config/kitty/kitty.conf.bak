@@ -1,0 +1,5 @@
+background_opacity 10.8
+confirm_os_window_close 0
+font_size 11.0
+cursor_shape beam
+incude ~/dotfiles/.config/colors/dracular/kitty/dracula.conf

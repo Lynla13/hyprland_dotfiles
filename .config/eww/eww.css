@@ -1,10 +1,9 @@
 @import '../../.cache/wal/colors-waybar.css';
 @import './styles/animation.css';
+@import '../../.config/colors/dracular/waybar/colors.css';
 *{
   all:unset;
 }
 
 @import './styles/left_sidebar.css';
-
 @import './styles/search_bar.css';
-
