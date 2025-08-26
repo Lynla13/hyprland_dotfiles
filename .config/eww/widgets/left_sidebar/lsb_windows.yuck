@@ -1,7 +1,7 @@
 ;; ** Windows 
 ;; Left Sidebar
 (defwindow left_sidebar :monitor 0  :class "left_sidebar" :exclusive true
-  :geometry (geometry :x "10px" :y "10px" :width "20%"  :height "9%"  :anchor "left center")
+  :geometry (geometry :x "0px" :y "10px" :width "20%"  :height "9%"  :anchor "left center")
   :stacking "fg" 
   :windowtype "dock"
   (box :class "lsb_container" :orientation "v" :space-evenly "false" :spacing 10

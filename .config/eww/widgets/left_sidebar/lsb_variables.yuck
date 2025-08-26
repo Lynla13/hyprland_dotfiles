@@ -44,7 +44,7 @@
 (defpoll current_volume :interval 100 "echo |pactl get-sink-volume @DEFAULT_SINK@ | awk -F/ '{print $2}' | tr -d ' ' | sed 's/%$//'")
 (defpoll username :interval 36000  "whoami")
 (defpoll background :interval 36000 "echo | ps aux | grep swaybg | awk -F'swaybg' '{print $2}'| awk '{print $2}' | head -n 1" )
-(defpoll note :interval 60 "head -n 10 ~/Documents/notes.txt")
+(defpoll note :interval 60 "head -n 9 ~/Documents/notes.txt")
 (defpoll quote :interval "15s" "fortune -s -n 90")
 (defvar show_home true)
 (defvar timer_tg 0)

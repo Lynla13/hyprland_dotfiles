@@ -1,7 +1,5 @@
 .left_sidebar {
-  background-color:@background;
   padding:9px;
-  border : 1px solid @purple;
   border-radius: 10px;
 
 }
@@ -17,7 +15,7 @@
   padding-top: 7px;
   padding-bottom: 7px;
   border : 1px solid @purple;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .lsb_titles {
@@ -25,7 +23,7 @@
   min-height: 30px;
   color: @foreground;
   border : 1px solid @purple;
-  border-radius: 5px;
+  border-radius: 10px;
 
 }
 .lsb_homepage {
@@ -35,7 +33,7 @@
   background-color : @background;
   min-height: 133px;
   padding :10px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .cp_timer {
@@ -65,7 +63,7 @@
   background-color: @background;
   min-height: 40px;
   min-width: 70px;
-  margin-left:14px;
+  margin-left:13px;
   padding-left:5px;
   border : 1px solid @purple;
   border-radius: 10px;
@@ -91,6 +89,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   border: 1px solid @purple;
+  border-radius: 10px;
   color: @foreground;
 }
 
@@ -107,16 +106,16 @@
   min-width: 210px;
   margin-right: 10px;
   border: 1px solid @purple;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .lsb_volume {
-  padding-left: 10px;
+  padding-left: 15px;
   min-height: 50px;
   background-color : @background;
   color : @foreground;
   border: 1px solid @purple;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .scl_volume{
@@ -142,7 +141,7 @@
   padding-left: 50px;
   margin-top: 5px;
   border : 1px solid @purple;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: @background;
 }
 
@@ -167,7 +166,7 @@
   margin-top: 5px;
   min-height: 250px;
   border: 1px solid @purple;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: @background;
   padding: 10px;
   color: @foreground;
@@ -178,7 +177,7 @@
   margin-top: 5px;
   min-height:250px;
   border: 1px solid @purple;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: @background;
   padding: 10px;
   color: @comment;
@@ -219,7 +218,7 @@
   background-color: @background;
   padding: 10px;
   border: 1px solid @purple;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .lsb_mw_bg_tm {

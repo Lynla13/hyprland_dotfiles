@@ -1,4 +1,3 @@
-
 #!/bin/sh
 BSSIDS="$(nmcli device wifi list |
     awk 'NR>1 {if ($1 != "*") {print $1}}' |

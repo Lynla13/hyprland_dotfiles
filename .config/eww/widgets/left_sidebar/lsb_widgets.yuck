@@ -104,7 +104,7 @@
       (box (label :text " ") ))
     (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec firefox"
       (box (label :text "󰈹 ")))
-    (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec kitty ranger"
+    (button :class "btn_pw_menu" :onclick "hyprctl dispatch exec thunar"
       (box (label :text "󰉋 ")))
     (button :class "btn_pw_menu" :onclick "eww update app_tg=1"
       (box (label :text " ")))
@@ -116,9 +116,9 @@
       (box (label :text " " )))
     (button :class "btn_menu" :onclick "eww update timer_tg=1 app_tg=1"
       (box (label :text " ")))
-    (button :class "btn_menu" :onclick "~/.config/scripts/wallpaper_change.sh"
+    (button :class "btn_menu" :onclick "~/.config/scripts/list_wallpapers.sh"
       (box (label :text " ")))
-    (button :class "btn_menu" :onclick "~/.config/scripts/wallpaper_change.sh"
+    (button :class "btn_menu" :onclick "~/.config/scripts/list_wallpapers.sh"
       (box (label :text " ")))
 
 ))
