@@ -1,11 +1,8 @@
 .left_sidebar {
   padding:9px;
-  border-radius: 10px;
-
+  border-radius: 5px;
 }
 
-.lsb_container {
-}
 .clock {
   color: @foreground;
 }
@@ -15,7 +12,7 @@
   padding-top: 7px;
   padding-bottom: 7px;
   border : 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .lsb_titles {
@@ -23,40 +20,11 @@
   min-height: 30px;
   color: @foreground;
   border : 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
 
 }
 .lsb_homepage {
   min-height: 10px;
-}
-.lsb_timer {
-  background-color : @background;
-  min-height: 133px;
-  padding :10px;
-  border-radius: 10px;
-}
-
-.cp_timer {
-  color: @foreground;
-  min-width: 20px;
-  padding: 5px;
-  border : 1px solid @purple;
-}
-
-.cp_timer circular-progress {
-    background-color: @yellow;
-
-}
-
-.timer {
-  min-width: 150px;
-}
-.timer:hover {
-  color: @selection;
-}
-
-.btn_timer:hover {
-  color:@selection;
 }
 .btn_menu {
   color : @foreground;
@@ -66,7 +34,7 @@
   margin-left:13px;
   padding-left:5px;
   border : 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .btn_menu:hover {
@@ -89,7 +57,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
   color: @foreground;
 }
 
@@ -106,7 +74,7 @@
   min-width: 210px;
   margin-right: 10px;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .lsb_volume {
@@ -115,7 +83,7 @@
   background-color : @background;
   color : @foreground;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .scl_volume{
@@ -141,7 +109,7 @@
   padding-left: 50px;
   margin-top: 5px;
   border : 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: @background;
 }
 
@@ -164,9 +132,9 @@
 
 .lbs_quote {
   margin-top: 5px;
-  min-height: 250px;
+  min-height: 540px;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: @background;
   padding: 10px;
   color: @foreground;
@@ -175,9 +143,9 @@
 
 .lbs_notes {
   margin-top: 5px;
-  min-height:250px;
+  min-height: 580px;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: @background;
   padding: 10px;
   color: @comment;
@@ -217,8 +185,9 @@
   min-height: 290px;
   background-color: @background;
   padding: 10px;
+  padding-bottom: 100px;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .lsb_mw_bg_tm {
@@ -267,3 +236,47 @@
   margin-top: 5px;
 }
 
+
+
+.lbs_ai {
+  margin-top: 5px;
+  min-height:300px;
+  border: 1px solid @purple;
+  border-radius: 5px;
+  background-color: @background;
+  padding: 10px;
+  color: @foreground;
+  font-size: 11pt;
+}
+.lb_ai {
+  background-color: @comment;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top:1px;
+  padding-bottom: 10px; 
+  border-radius: 5px 5px;
+
+}
+.scroll_ai { 
+  min-height: 492px;
+}
+.input_chat {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  min-height: 30px;
+  border-radius: 5px;
+  background-color: @comment;
+  color: @foreground;
+}
+.ai_bar {
+  color: @background;
+
+}
+
+.ai_title {
+ margin-bottom: 5px;
+}
+
+.bt_empty:hover {
+  color: @comment;
+}

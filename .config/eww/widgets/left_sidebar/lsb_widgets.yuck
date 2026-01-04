@@ -37,13 +37,31 @@
 ;;; clock
 
 (defwidget lbs_notes []
-  (box :spacing 1 :class "lbs_notes" :orientation "v" :space-evenly "false" 
-    (label :text {note} :wrap true :class "lb_notes" )
-    (box :orientation "h"
-      (button :class "btn_notes" :onclick "echo '==========${DATE}/${MONTH}/${YEAR}==========' > ~/Documents/notes.txt" "[ Empty ]")
-      (button :class "btn_notes" :onclick "hyprctl dispatch exec kitty nvim ~/Documents/notes.txt" "[ Edit TODO ]")
+  (box :spacing 1 :class "lbs_ai" :orientation "v" :space-evenly "false"
+    (label :text "= TODO LISTS =" :class "ai_title" :justify "left" )
+    (scroll :hscroll "true" :class "scroll_ai" 
+        (label :text {note} :wrap true :class "lb_ai" )
+    )
+     (label :text "====================================" :class "ai_bar")
+    (overlay
+      (input :onaccept "~/.config/scripts/add_todo.sh add '{}'" :class "input_chat" :value "" )
     )
   )
+)
+
+(defwidget lbs_ai []
+  (box :spacing 1 :class "lbs_ai" :orientation "v" :space-evenly "false" 
+    (label :text "= AI CHAT BOX =" :class "ai_title")
+
+    (scroll :hscroll "true" :class "scroll_ai" 
+              (label :text {ai_answer} :wrap true :class "lb_ai" :justify "left" )
+            )
+
+      (label :text "====================================" :class "ai_bar")
+    (overlay
+      (input :onaccept "~/.config/scripts/ai_chat.sh '{}'" :class "input_chat")
+    )
+)
 )
 
 
@@ -112,9 +130,9 @@
 
 (defwidget lsb_menu []
   (box :class "lsb_menu" :orientation "horizontal" :space-evenly "false"
-    (button :class "btn_menu" :onclick "eww update timer_tg=0 app_tg=0"
+    (button :class "btn_menu" :onclick "eww update timer_tg=0 lbs_tg=0"
       (box (label :text " " )))
-    (button :class "btn_menu" :onclick "eww update timer_tg=1 app_tg=1"
+    (button :class "btn_menu" :onclick "eww update timer_tg=1 lbs_tg=1"
       (box (label :text " ")))
     (button :class "btn_menu" :onclick "~/.config/scripts/list_wallpapers.sh"
       (box (label :text " ")))
@@ -164,13 +182,13 @@
  (box :class "lsb_middle_row" :orientation "v" :space-evenly "false"
         (lsb_volume)
         (stack :selected {app_tg} :transition "slideleft"
-         (lsb_app_menu)
          (lsb_power_menu)
+         (lsb_app_menu)
 
         )
-        (stack :selected {app_tg} :transition "slideleft"
+        (stack :selected {lbs_tg} :transition "slideleft"
+          (lbs_ai)
           (lbs_notes)
-          (lbs_quote)
         )
       )
 )
@@ -194,10 +212,6 @@
     :space-evenly "false"
         (home_bkg)
         (home_note)
-           (box :class "lsb_bottom_row" :orientation "v" :spacing :10 
-        ( lsb_music_widget)
-      )
-  
      )
 )
   

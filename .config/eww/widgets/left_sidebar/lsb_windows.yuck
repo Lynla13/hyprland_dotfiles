@@ -2,12 +2,14 @@
 ;; Left Sidebar
 (defwindow left_sidebar :monitor 0  :class "left_sidebar" :exclusive true
   :geometry (geometry :x "0px" :y "10px" :width "20%"  :height "9%"  :anchor "left center")
-  :stacking "fg" 
-  :windowtype "dock"
+  :stacking "fg"
+  :focusable "ondemand"
+  :windowtype "desktop"
   (box :class "lsb_container" :orientation "v" :space-evenly "false" :spacing 10
     (lsb_titles)
     (revealer :transition "slideup" :reveal {show_home}
         (lsb_homepage))
-    (lsb_menu)
+        (lsb_menu)
+
   )
 )

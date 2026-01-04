@@ -49,3 +49,8 @@
 (defvar show_home true)
 (defvar timer_tg 0)
 (defvar app_tg 0)
+(defvar lbs_tg 0)
+;; Chat var
+
+(deflisten ai_answer :interval "1s" " tail -F ~/.config/scripts/history.txt")
+

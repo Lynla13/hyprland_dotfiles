@@ -14,6 +14,7 @@ window#waybar {
   /* you can also GTK3 CSS functions! */
   background-color:rgba(0, 0, 0, 0.0);
   border: none;
+
 }
 
 #taskbar {
@@ -24,13 +25,15 @@ window#waybar {
 }
 
 #workspaces{
-  padding-bottom: 2px;
   padding-left:2px;
   background-color: @background;
   border-radius: 0px;
 	margin-right:20px;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
+  margin-bottom: 3px;
+
+
   }
 
 #window {
@@ -41,7 +44,8 @@ window#waybar {
   margin-right: 10px;
   background-color: @background;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
+  margin-bottom: 3px;
 }
 #workspaces button {
   color: @foreground;
@@ -63,8 +67,9 @@ window#waybar {
 	color: @foreground;
 	margin-left: 10px;
 	padding-left :10px;
-  border-radius:10px;
+  border-radius:5px;
   border: 1px solid @purple;
+  margin-bottom: 3px;
 }
 
 
@@ -82,7 +87,8 @@ window#waybar {
   padding-left:10px;
   padding-right: 10px;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
+  margin-bottom: 3px;
 }
 
 #custom-left_sidebar,
@@ -100,7 +106,8 @@ window#waybar {
   padding-left:10px;
   min-width: 20px;
   border: 1px solid @purple;
-  border-radius: 10px;
+  border-radius: 5px;
+  margin-bottom: 3px;
 }
 
 #custom-shutdown {

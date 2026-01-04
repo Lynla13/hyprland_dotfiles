@@ -1,7 +1,7 @@
 {
   "NvChad": { "branch": "v2.5", "commit": "29ebe31ea6a4edf351968c76a93285e6e108ea08" },
   "conform.nvim": { "branch": "master", "commit": "973f3cb73887d510321653044791d7937c7ec0fa" },
+  "fcitx5.nvim": { "branch": "main", "commit": "e2154f63e01baa2e7e3d1ce3810bf82b17986720" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
-  "nvim-lspconfig": { "branch": "master", "commit": "63a38440989c58e1f100373ab603fd24665bdc9a" },
-  "nvim-parinfer": { "branch": "master", "commit": "5ca09287ab3f4144f78ff7977fabc27466f71044" }
+  "nvim-lspconfig": { "branch": "master", "commit": "63a38440989c58e1f100373ab603fd24665bdc9a" }
 }
